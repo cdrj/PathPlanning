@@ -3,15 +3,15 @@ Plotting tools for Sampling-based algorithms
 @author: huiming zhou
 """
 
+from rrt_2D import env
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import os
 import sys
-
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) +
                 "/../../Sampling_based_Planning/")
-
-from Sampling_based_Planning.rrt_2D import env
+# sys.path.append(os.path.dirname(os.path.abspath(__file__)) +
+#                 "/../../Sampling_based_Planning/")
 
 
 class Plotting:
@@ -78,7 +78,8 @@ class Plotting:
             for node in nodelist:
                 count += 1
                 if node.parent:
-                    plt.plot([node.parent.x, node.x], [node.parent.y, node.y], "-g")
+                    plt.plot([node.parent.x, node.x], [
+                             node.parent.y, node.y], "-g")
                     plt.gcf().canvas.mpl_connect('key_release_event',
                                                  lambda event:
                                                  [exit(0) if event.key == 'escape' else None])
@@ -87,7 +88,8 @@ class Plotting:
         else:
             for node in nodelist:
                 if node.parent:
-                    plt.plot([node.parent.x, node.x], [node.parent.y, node.y], "-g")
+                    plt.plot([node.parent.x, node.x], [
+                             node.parent.y, node.y], "-g")
 
     @staticmethod
     def plot_visited_connect(V1, V2):
@@ -96,10 +98,12 @@ class Plotting:
         for k in range(max(len1, len2)):
             if k < len1:
                 if V1[k].parent:
-                    plt.plot([V1[k].x, V1[k].parent.x], [V1[k].y, V1[k].parent.y], "-g")
+                    plt.plot([V1[k].x, V1[k].parent.x], [
+                             V1[k].y, V1[k].parent.y], "-g")
             if k < len2:
                 if V2[k].parent:
-                    plt.plot([V2[k].x, V2[k].parent.x], [V2[k].y, V2[k].parent.y], "-g")
+                    plt.plot([V2[k].x, V2[k].parent.x], [
+                             V2[k].y, V2[k].parent.y], "-g")
 
             plt.gcf().canvas.mpl_connect('key_release_event',
                                          lambda event: [exit(0) if event.key == 'escape' else None])
@@ -112,6 +116,7 @@ class Plotting:
     @staticmethod
     def plot_path(path):
         if len(path) != 0:
-            plt.plot([x[0] for x in path], [x[1] for x in path], '-r', linewidth=2)
+            plt.plot([x[0] for x in path], [x[1]
+                     for x in path], '-r', linewidth=2)
             plt.pause(0.01)
         plt.show()
